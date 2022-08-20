@@ -1,0 +1,14 @@
+TODO:
+    - create the sudoku board
+    - initally all 0s
+    - 9 * 9
+    - write an algorithm to solve it
+    - at each successful pick of the cell print the whole board
+    - create a function to set the value at the given x and y
+    - create a function to get the value at the given x and y
+    - create a function to check if the value is valid at the given x and y
+    - create a function to check if the board is solved
+    - create a function to solve the board
+    - create a function to print the board
+    - create a function to print the board in a pretty way (optional)
+    
