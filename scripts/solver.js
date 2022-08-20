@@ -4,6 +4,7 @@ class Board {
     this.height = height;
     this.board = [];
     this.init();
+    this.randomlyFill();
   }
   init() {
     this.board = new Array(this.width)
@@ -34,6 +35,10 @@ class Board {
         }
       }
     }
+  }
+
+  sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   isSafetoPut(x, y, value) {
@@ -70,26 +75,58 @@ class Board {
     return true;
   }
 
-  solve() {
+  async solve() {
     if (this.isSolved()) {
+      setTimeout(() => {
+        alert("Completed");
+      }, 500);
       return true;
     }
 
     let [row, col] = this.returnValidIndices();
 
-    // Else for each-row backtrack
     for (let num = 1; num <= this.width; num++) {
+      await this.sleep(1);
       if (this.isSafetoPut(row, col, num)) {
         this.set(row, col, num);
-        this.print();
-        if (this.solve()) {
+        this.render();
+        if (await this.solve()) {
           return true;
         } else {
           this.set(row, col, 0);
         }
       }
     }
+
     return false;
+  }
+
+  render() {
+    wrapper.innerHTML = null;
+    this.board.forEach((col, colindex) => {
+      let colDiv = document.createElement("div");
+      colDiv.className = "colWrap";
+      col.forEach((row, rowindex) => {
+        let div = document.createElement("div");
+        div.id = `${colindex}-${rowindex}`;
+
+        div.className = "box btn btn-warning";
+        div.innerText = row;
+
+        colDiv.appendChild(div);
+      });
+      wrapper.appendChild(colDiv);
+    });
+  }
+
+  randomlyFill() {
+    for (let i = 1; i <= 9; i++) {
+      let x = Math.floor(Math.random() * this.height);
+      let y = Math.floor(Math.random() * this.width);
+      if (this.isSafetoPut(x, y, i % 9)) {
+        this.set(x, y, i % 9);
+      }
+    }
   }
 
   print() {
@@ -104,14 +141,3 @@ class Board {
     console.log("\n");
   }
 }
-
-class Sudoku {
-  constructor(width, height) {
-    this.board = new Board(width, height);
-    this.board.init();
-    this.board.solve();
-    // this.board.print();
-  }
-}
-
-new Sudoku(9, 9);
