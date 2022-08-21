@@ -15,18 +15,29 @@
   </head>
   <body>
     <div class="container">
-      <div class="text-center">
-        <h1 class="display-3">Sudoku Solver</h1>
+      <h1 class="display-4">Sudoku Solver</h1>
+      <div class="row">
         <div class="col-12">
           <div class="wrapper" id="cover"></div>
         </div>
       </div>
-      <div>
-        <button class="random btn btn-secondary">Randomly Fill</button>
-        <button class="solve btn btn-success">Solve Sudoku</button>
-      </div>
     </div>
 
+    <div class="container">
+      <div class="mt-2">
+        <button class="random btn btn-secondary">Randomly Fill</button>
+        <button class="solve btn btn-success">Solve Sudoku</button>
+        <div
+          style="display: flex; align-items: center; justify-content: center"
+        >
+          <label class="mr-2 mt-2"> Animate </label>
+          <select class="animate form-control mt-2">
+            <option value="y">Yes</option>
+            <option value="n">No</option>
+          </select>
+        </div>
+      </div>
+    </div>
     <script src="./scripts/solver.js"></script>
     <script src="./scripts/index.js"></script>
   </body>

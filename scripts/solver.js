@@ -5,7 +5,13 @@ class Board {
     this.board = [];
     this.init();
     this.randomlyFill();
+    this.animate = true;
   }
+
+  toggleAnimate(v) {
+    this.animate = v === "y" ? true : false;
+  }
+
   init() {
     this.board = new Array(this.width)
       .fill(0)
@@ -86,7 +92,9 @@ class Board {
     let [row, col] = this.returnValidIndices();
 
     for (let num = 1; num <= this.width; num++) {
-      await this.sleep(1);
+      if (this.animate) {
+        await this.sleep(1);
+      }
       if (this.isSafetoPut(row, col, num)) {
         this.set(row, col, num);
         this.render();

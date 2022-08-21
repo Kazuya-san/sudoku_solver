@@ -4,8 +4,15 @@ class Sudoku {
     this.render();
   }
 
+  animate(v) {
+    this.GameBoard.toggleAnimate(v);
+  }
+
   solve() {
-    this.GameBoard.solve();
+    let val = this.GameBoard.solve();
+    if (!val) {
+      alert("No Solution Exists");
+    }
   }
 
   randomize() {
@@ -36,6 +43,7 @@ class Sudoku {
 let wrapper = document.getElementById("cover");
 let solveBtn = document.querySelector(".solve");
 let randomBtn = document.querySelector(".random");
+let select = document.querySelector(".animate");
 let width = 9;
 let height = 9;
 
@@ -49,4 +57,8 @@ randomBtn.addEventListener("click", () => {
   sudoku_game.randomize();
   wrapper.innerHTML = null;
   sudoku_game.render();
+});
+
+select.addEventListener("change", (e) => {
+  sudoku_game.animate(e.target.value);
 });
