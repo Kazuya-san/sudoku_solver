@@ -33,8 +33,20 @@ class Sudoku {
           div.style.backgroundColor = "green";
         }
 
+        if (rowindex % 3 === 0) {
+          let div = document.createElement("div");
+          div.className = "divider-v";
+          colDiv.appendChild(div);
+        }
+
         colDiv.appendChild(div);
       });
+
+      if (colindex % 3 === 0) {
+        let div = document.createElement("div");
+        div.className = "divider";
+        wrapper.appendChild(div);
+      }
       wrapper.appendChild(colDiv);
     });
   }
