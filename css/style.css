@@ -36,6 +36,16 @@ body{
     height: 100%;
     margin: 0px 5px;
   }
+
+  .btn-warning{
+    background-color: #6b7e8d;
+    color: white;
+  }
+
+  .btn-primary{
+    background-color: #0B4F9E;
+    color: white;
+  }
   
   .box {
     width: 55px;

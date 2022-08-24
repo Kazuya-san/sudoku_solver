@@ -98,10 +98,14 @@ class Board {
       if (this.isSafetoPut(row, col, num)) {
         this.set(row, col, num);
         this.render();
+        document.getElementById(`${row}-${col}`).style.backgroundColor =
+          "green";
         if (await this.solve()) {
           return true;
         } else {
           this.set(row, col, 0);
+          document.getElementById(`${row}-${col}`).style.backgroundColor =
+            "red";
         }
       }
     }
